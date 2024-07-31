@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Data Security and Privacy</title>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+    header {
+      background-color: #98bfd1;
+      color: white;
+      padding: 1rem 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    header img {
+      width: 100px;
+      /* Adjust the width as needed */
+      cursor: pointer;
+    }
+
+    header h1 {
+      flex-grow: 1;
+      text-align: center;
+      margin: 0;
+    }
+
+    nav {
+      margin-bottom: 1rem;
+    }
+
+    .cta {
+      background-color: #007bff;
+      color: white;
+      padding: 1rem;
+      margin-top: 1rem;
+      text-align: center;
+      border-radius: 5px;
+    }
+
+    footer {
+      background-color: #343a40;
+      color: white;
+      text-align: center;
+      padding: 1rem 0;
+      margin-top: 2rem;
+    }
+
+    .content-section {
+      display: none;
+    }
+
+    .content-section.active {
+      display: block;
+    }
+
+    .feature-box {
+      text-align: center;
+      padding: 2rem 0;
+    }
+
+    .feature-box img {
+      width: 100%;
+      max-width: 300px;
+      height: auto;
+    }
+
+    .testimonials {
+      background-color: #f8f9fa;
+      padding: 2rem 0;
+    }
+
+    .testimonial {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .testimonial img {
+      border-radius: 50%;
+      width: 100px;
+      height: 100px;
+    }
+
+    .form-section {
+      margin-top: 2rem;
+    }
+
+    .form-group {
+      margin-bottom: 1rem;
+    }
+
+    #login-section,
+    #register-section,
+    #otp-section,
+    #faceid-section,
+    #payment-section,
+    #payment-credentials-section,
+    #payment-amount-section,
+    #payment-success-section {
+      display: none;
+    }
+
+    #main-content {
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <a href="#" onclick="showSection('home')">
+      <img src="diggiewallet2.webp" alt="DiggieWallet Logo">
+    </a>
+    <h1>Welcome to Diggie Wallet</h1>
+  </header>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light" id="main-nav">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
+      aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="#" data-section="home">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#" data-section="services">Services</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#" data-section="pricing">Pricing</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#" data-section="about-us">About Us</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#" data-section="contact-us">Contact Us</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+
+        <!-- Login Section -->
+        <section id="login-section" class="form-section active">
+          <h3>Account Login</h3>
+          <form id="login-form">
+            <div class="form-group">
+              <label for="login-email">Email:</label>
+              <input type="email" class="form-control" id="login-email" placeholder="Enter your email" required>
+            </div>
+            <div class="form-group">
+              <label for="login-password">Password:</label>
+              <input type="password" class="form-control" id="login-password" placeholder="Enter your password" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Login</button>
+          </form>
+          <p>Don't have an account? <a href="#" onclick="showRegister()">Register here</a></p>
+        </section>
+
+        <!-- Register Section -->
+        <section id="register-section" class="form-section">
+          <h3>Account Creation</h3>
+          <form id="register-form">
+            <div class="form-group">
+              <label for="register-name">Name:</label>
+              <input type="text" class="form-control" id="register-name" placeholder="Enter your name" required>
+            </div>
+            <div class="form-group">
+              <label for="register-email">Email:</label>
+              <input type="email" class="form-control" id="register-email" placeholder="Enter your email" required>
+            </div>
+            <div class="form-group">
+              <label for="register-password">Password:</label>
+              <input type="password" class="form-control" id="register-password" placeholder="Enter your password" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Register</button>
+          </form>
+        </section>
+
+        <!-- OTP Section -->
+        <section id="otp-section" class="form-section">
+          <h3>OTP Authentication</h3>
+          <form id="otp-form">
+            <div class="form-group">
+              <label for="otp">Enter OTP:</label>
+              <input type="text" class="form-control" id="otp" placeholder="Enter the OTP sent to your email or phone" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Verify OTP</button>
+          </form>
+        </section>
+
+        <!-- Face ID Section -->
+        <section id="faceid-section" class="form-section">
+          <h3>Face ID Authentication</h3>
+          <p>Use Face ID to securely log in to your account.</p>
+          <button type="button" class="btn btn-primary" onclick="authenticateFaceID()">Use Face ID</button>
+        </section>
+
+        <!-- Payment Section -->
+        <section id="payment-section" class="form-section">
+          <h3>Select Payment Method</h3>
+          <form id="payment-method-form">
+            <div class="form-group">
+              <label for="payment-method">Payment Method:</label>
+              <select class="form-control" id="payment-method" required>
+                <option value="" disabled selected>Select your payment method</option>
+                <option value="paynow">PayNow</option>
+                <option value="visa">Visa</option>
+                <option value="nets">Nets</option>
+                <option value="utrip">Utrip</option>
+              </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Continue</button>
+          </form>
+        </section>
+
+        <!-- Payment Credentials Section -->
+        <section id="payment-credentials-section" class="form-section">
+          <h3>Enter Payment Credentials</h3>
+          <form id="payment-credentials-form">
+            <div class="form-group">
+              <label for="card-number">Card Number:</label>
+              <input type="text" class="form-control" id="card-number" placeholder="Enter your card number" required>
+            </div>
+            <div class="form-group">
+              <label for="first-name">First Name:</label>
+              <input type="text" class="form-control" id="first-name" placeholder="Enter your first name" required>
+            </div>
+            <div class="form-group">
+              <label for="last-name">Last Name:</label>
+              <input type="text" class="form-control" id="last-name" placeholder="Enter your last name" required>
+            </div>
+            <div class="form-group">
+              <label for="expiry-date">Expiry Date:</label>
+              <input type="month" class="form-control" id="expiry-date" required>
+            </div>
+            <div class="form-group">
+              <label for="country">Country:</label>
+              <input type="text" class="form-control" id="country" placeholder="Enter your country" required>
+            </div>
+            <div class="form-group">
+              <label for="billing-address">Billing Address:</label>
+              <input type="text" class="form-control" id="billing-address" placeholder="Enter your billing address" required>
+            </div>
+            <div class="form-group">
+              <label for="postal-code">Postal Code:</label>
+              <input type="text" class="form-control" id="postal-code" placeholder="Enter your postal code" required>
+            </div>
+            <div class="form-group">
+              <label for="cvv">CVV:</label>
+              <input type="text" class="form-control" id="cvv" placeholder="Enter your CVV" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Continue</button>
+          </form>
+        </section>
+
+        <!-- Payment Amount Section -->
+        <section id="payment-amount-section" class="form-section">
+          <h3>Enter Amount to Transfer</h3>
+          <form id="payment-amount-form">
+            <div class="form-group">
+              <label for="amount">Amount:</label>
+              <input type="number" class="form-control" id="amount" placeholder="Enter the amount to transfer" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Make Payment</button>
+          </form>
+        </section>
+
+        <!-- Payment Success Section -->
+        <section id="payment-success-section" class="form-section">
+          <h3>Payment Success</h3>
+          <p><img src="https://img.icons8.com/color/96/000000/ok--v2.png" alt="Success Tick"> Your payment was successful!</p>
+        </section>
+
+        <!-- Main Content -->
+        <div id="main-content">
+          <section id="home" class="content-section active">
+            <h2>Home</h2>
+            <p>Welcome to DiggieWallet. Our mission is to provide robust security solutions to protect sensitive information from unauthorized access and data breaches.</p>
+            <div class="feature-box">
+              <h3>Our Key Features</h3>
+              <div class="row">
+                <div class="col-md-4">
+                  <img src="https://www.nist.gov/sites/default/files/images/2019/09/25/multifactor-authentificaton.png" alt="Feature 1">
+                  <h4>Multi-factor authentication</h4>
+                  <p>This feature provides an additional layer of security by requiring users to authenticate using more than one method. Typically, the first method involves entering primary credentials, such as a username and password. This step is based on something the user knows.</p>
+                </div>
+                <div class="col-md-4">
+                  <img src="https://academy.avast.com/hs-fs/hubfs/New_Avast_Academy/how_does_2fa_two_factor_authentication_work_academy/img-05.png?width=600&name=img-05.png" alt="Feature 2">
+                  <h4>2 Factor prompt</h4>
+                  <p>After the user successfully enters their primary credentials, they are prompted to provide a second form of authentication. This second factor adds an extra layer of security by requiring something the user has or is (e.g., a one-time password or biometric verification).</p>
+                </div>
+                <div class="col-md-4">
+                  <img src="https://ipass-mena.com/wp-content/uploads/2023/05/94287813.webp" alt="Feature 3">
+                  <h4>Otp and Face ID</h4>
+                  <p>A randomly generated password that is valid for only one login session or transaction. It is typically sent to the user's registered mobile number or email address. The user simply looks at their device, and the system confirms their identity by matching the stored facial data.</p>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section id="about-us" class="content-section">
+            <h2>About Us</h2>
+            <p>Welcome to DiggieWallet. Our mission is to provide robust security solutions to protect sensitive information from unauthorized access and data breaches. We focus on implementing role-based access control, multi-factor authentication, and utilizing emerging technologies like AI and 5G to ensure top-notch security for your data.</p>
+            <h3>Our Mission</h3>
+            <p>We are committed to delivering state-of-the-art security measures that keep your data safe and secure. Our goal is to stay ahead of potential threats and provide our clients with the peace of mind they need in today's digital world.</p>
+            <h3>Our Key Features</h3>
+            <ul>
+              <li><strong>Multi-Factor Authentication (MFA):</strong> Our platform features Multi-Factor Authentication (MFA) to enhance security. This includes initial authentication where the user enters their primary credential, typically a username and password, followed by a second factor prompt such as a one-time password (OTP) or Face ID.</li>
+              <li><strong>Role-Based Access Control (RBAC):</strong> Implementing RBAC ensures that only authorized users have access to specific data and systems, reducing the risk of unauthorized access and data breaches.</li>
+              <li><strong>Data Encryption:</strong> We use advanced encryption techniques to protect sensitive information both at rest and in transit, ensuring that your data remains secure.</li>
+            </ul>
+            <h3>Our Advanced Technologies</h3>
+            <p>We incorporate the latest technologies to ensure data security:</p>
+            <ul>
+              <li><strong>Artificial Intelligence (AI):</strong> Our app leverages AI to offer secure payment and transaction methods while keeping track of digital wallets.</li>
+              <li><strong>5G Technology:</strong> Utilizing 5G technology allows our network and data operations to run efficiently, providing faster and more secure services.</li>
+            </ul>
+            <h3>Why Choose Us?</h3>
+            <p>Choosing us means choosing a partner dedicated to providing the highest level of security for your data. Our comprehensive approach includes:</p>
+            <ul>
+              <li>Continuous monitoring and updating of security protocols to address emerging threats.</li>
+              <li>A team of experienced professionals committed to maintaining the integrity and confidentiality of your data.</li>
+              <li>Customized security solutions tailored to meet the unique needs of your organization.</li>
+            </ul>
+          </section>
+          <section id="services" class="content-section">
+            <h2>Services</h2>
+            <p>We offer a range of services to help secure your data:</p>
+            <ul>
+              <li>Role-Based Access Control (RBAC)</li>
+              <li>Multi-Factor Authentication (MFA)</li>
+              <li>Data Encryption</li>
+              <li>Network Security</li>
+              <li>Cybersecurity Consulting</li>
+            </ul>
+          </section>
+          <section id="pricing" class="content-section">
+            <h2>Pricing</h2>
+            <p>We offer competitive pricing plans tailored to your needs. Contact us for detailed pricing information.</p>
+          </section>
+          <section id="features" class="content-section">
+            <h2>Features</h2>
+            <p>Our platform features Multi-Factor Authentication (MFA) to enhance security:</p>
+            <ul>
+              <li>Initial authentication: The user enters their primary credential, typically a username and password.</li>
+              <li>Second factor prompt: The user is prompted to provide a second form of authentication, such as a one-time password (OTP) or Face ID.</li>
+            </ul>
+          </section>
+          <section id="emerging-technologies" class="content-section">
+            <h2>Emerging Technologies</h2>
+            <p>We incorporate the latest technologies to ensure data security:</p>
+            <ul>
+              <li>Artificial Intelligence (AI): Our app offers payment and transaction methods and keeps track of digital wallets.</li>
+              <li>5G Technology: Network and data are required to operate the app efficiently.</li>
+            </ul>
+          </section>
+          <section id="contact-us" class="content-section">
+            <h2>Contact Us</h2>
+            <p>If you have any questions or need further information, please feel free to contact us:</p>
+            <form>
+              <div class="form-group">
+                <label for="name">Your Name:</label>
+                <input type="text" class="form-control" id="name" placeholder="Enter your name">
+              </div>
+              <div class="form-group">
+                <label for="email">Your Email:</label>
+                <input type="email" class="form-control" id="email" placeholder="Enter your email">
+              </div>
+              <div class="form-group">
+                <label for="message">Your Message:</label>
+                <textarea class="form-control" id="message" rows="4" placeholder="Enter your message"></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary">Send</button>
+            </form>
+          </section>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer>
+    <div class="social-media">
+      <a href="#"><i class="icon-facebook"></i> Facebook</a>
+      <a href="#"><i class="icon-twitter"></i> Twitter</a>
+      <a href="#"><i class="icon-linkedin"></i> LinkedIn</a>
+    </div>
+  </footer>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      showLogin();
+  
+      document.getElementById('login-form').addEventListener('submit', function (event) {
+        event.preventDefault();
+        showOTP();
+      });
+  
+      document.getElementById('register-form').addEventListener('submit', function (event) {
+        event.preventDefault();
+        showOTP();
+      });
+  
+      document.getElementById('otp-form').addEventListener('submit', function (event) {
+        event.preventDefault();
+        showFaceID();
+      });
+  
+      document.getElementById('payment-method-form').addEventListener('submit', function (event) {
+        event.preventDefault();
+        showPaymentCredentials();
+      });
+  
+      document.getElementById('payment-credentials-form').addEventListener('submit', function (event) {
+        event.preventDefault();
+        showPaymentAmount();
+      });
+  
+      document.getElementById('payment-amount-form').addEventListener('submit', function (event) {
+        event.preventDefault();
+        showPaymentSuccess();
+      });
+  
+      // Add event listeners for navigation links
+      document.querySelectorAll('nav a[data-section]').forEach(link => {
+        link.addEventListener('click', function (event) {
+          event.preventDefault();
+          showSection(this.getAttribute('data-section'));
+        });
+      });
+    });
+  
+    function showLogin() {
+      document.getElementById('main-nav').style.display = 'none';
+      document.getElementById('login-section').style.display = 'block';
+      document.getElementById('register-section').style.display = 'none';
+      document.getElementById('otp-section').style.display = 'none';
+      document.getElementById('faceid-section').style.display = 'none';
+      document.getElementById('payment-section').style.display = 'none';
+      document.getElementById('payment-credentials-section').style.display = 'none';
+      document.getElementById('payment-amount-section').style.display = 'none';
+      document.getElementById('payment-success-section').style.display = 'none';
+      document.getElementById('main-content').style.display = 'none';
+    }
+  
+    function showRegister() {
+      document.getElementById('main-nav').style.display = 'none';
+      document.getElementById('login-section').style.display = 'none';
+      document.getElementById('register-section').style.display = 'block';
+      document.getElementById('otp-section').style.display = 'none';
+      document.getElementById('faceid-section').style.display = 'none';
+      document.getElementById('payment-section').style.display = 'none';
+      document.getElementById('payment-credentials-section').style.display = 'none';
+      document.getElementById('payment-amount-section').style.display = 'none';
+      document.getElementById('payment-success-section').style.display = 'none';
+      document.getElementById('main-content').style.display = 'none';
+    }
+  
+    function showOTP() {
+      document.getElementById('main-nav').style.display = 'none';
+      document.getElementById('login-section').style.display = 'none';
+      document.getElementById('register-section').style.display = 'none';
+      document.getElementById('otp-section').style.display = 'block';
+      document.getElementById('faceid-section').style.display = 'none';
+      document.getElementById('payment-section').style.display = 'none';
+      document.getElementById('payment-credentials-section').style.display = 'none';
+      document.getElementById('payment-amount-section').style.display = 'none';
+      document.getElementById('payment-success-section').style.display = 'none';
+      document.getElementById('main-content').style.display = 'none';
+    }
+  
+    function showFaceID() {
+      document.getElementById('main-nav').style.display = 'none';
+      document.getElementById('login-section').style.display = 'none';
+      document.getElementById('register-section').style.display = 'none';
+      document.getElementById('otp-section').style.display = 'none';
+      document.getElementById('faceid-section').style.display = 'block';
+      document.getElementById('payment-section').style.display = 'none';
+      document.getElementById('payment-credentials-section').style.display = 'none';
+      document.getElementById('payment-amount-section').style.display = 'none';
+      document.getElementById('payment-success-section').style.display = 'none';
+      document.getElementById('main-content').style.display = 'none';
+    }
+  
+    function authenticateFaceID() {
+      // Simulate Face ID authentication
+      setTimeout(function () {
+        document.getElementById('main-nav').style.display = 'block';
+        document.getElementById('login-section').style.display = 'none';
+        document.getElementById('register-section').style.display = 'none';
+        document.getElementById('otp-section').style.display = 'none';
+        document.getElementById('faceid-section').style.display = 'none';
+        document.getElementById('payment-section').style.display = 'block';
+      }, 2000); // Simulate a delay for Face ID authentication
+    }
+  
+    function showPaymentCredentials() {
+      document.getElementById('main-nav').style.display = 'block';
+      document.getElementById('login-section').style.display = 'none';
+      document.getElementById('register-section').style.display = 'none';
+      document.getElementById('otp-section').style.display = 'none';
+      document.getElementById('faceid-section').style.display = 'none';
+      document.getElementById('payment-section').style.display = 'none';
+      document.getElementById('payment-credentials-section').style.display = 'block';
+      document.getElementById('payment-amount-section').style.display = 'none';
+      document.getElementById('payment-success-section').style.display = 'none';
+      document.getElementById('main-content').style.display = 'none';
+    }
+  
+    function showPaymentAmount() {
+      document.getElementById('main-nav').style.display = 'block';
+      document.getElementById('login-section').style.display = 'none';
+      document.getElementById('register-section').style.display = 'none';
+      document.getElementById('otp-section').style.display = 'none';
+      document.getElementById('faceid-section').style.display = 'none';
+      document.getElementById('payment-section').style.display = 'none';
+      document.getElementById('payment-credentials-section').style.display = 'none';
+      document.getElementById('payment-amount-section').style.display = 'block';
+      document.getElementById('payment-success-section').style.display = 'none';
+      document.getElementById('main-content').style.display = 'none';
+    }
+  
+    function showPaymentSuccess() {
+      document.getElementById('main-nav').style.display = 'block';
+      document.getElementById('login-section').style.display = 'none';
+      document.getElementById('register-section').style.display = 'none';
+      document.getElementById('otp-section').style.display = 'none';
+      document.getElementById('faceid-section').style.display = 'none';
+      document.getElementById('payment-section').style.display = 'none';
+      document.getElementById('payment-credentials-section').style.display = 'none';
+      document.getElementById('payment-amount-section').style.display = 'none';
+      document.getElementById('payment-success-section').style.display = 'block';
+      document.getElementById('main-content').style.display = 'block';
+    }
+  
+    function showSection(sectionId) {
+      // Hide all content sections
+      document.querySelectorAll('.content-section').forEach(section => {
+        section.classList.remove('active');
+      });
+  
+      // Hide payment success section
+      document.getElementById('payment-success-section').style.display = 'none';
+  
+      // Show the selected content section
+      document.getElementById(sectionId).classList.add('active');
+    }
+  </script>
+  
+
+</html>
